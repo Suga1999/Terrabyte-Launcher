@@ -47,5 +47,12 @@ renderFriends();
 gameButtons.forEach(button => {
   button.addEventListener('click', () => {
     alert(`Launching ${button.dataset.game}...`);
+
+    const startBtn = document.querySelector('.start-btn');
+startBtn.addEventListener('click', () => {
+  alert('Starting the featured game...');
+  // TODO: Replace with actual launch code
+});
+
   });
 });

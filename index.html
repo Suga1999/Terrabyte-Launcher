@@ -2,32 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Terrabyte Launcher</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="sidebar"></div>
   <header>
-    <img src="assets/logo.png" alt="Terrabyte Launcher Logo" class="logo" />
-    <button class="settings-btn">⚙️</button>
+    <h1>Terrabyte Launcher</h1>
   </header>
 
   <main>
-    <div class="launcher-panel">
-      <button class="start-btn">⚔️ Start Game</button>
-      <div class="update-panel">
-        <h2>Update Notes</h2>
-        <p>New Genshin minigames coming soon!</p>
+    <section class="wallpaper">
+      <div class="wallpaper-content">
+        <h2>Welcome Player!</h2>
+        <p></p>
       </div>
-    </div>
-    <div class="friend-list">
-      <h3>Friends Online</h3>
-      <ul>
-        <li>Aether</li>
-        <li>Lumine</li>
-      </ul>
-    </div>
+    </section>
+
+    <aside class="sidebar">
+      <div class="games">
+        <h2>Games</h2>
+        <button class="game-btn" data-game="Game 1">Launch Game 1</button>
+        <button class="game-btn" data-game="Game 2">Launch Game 2</button>
+      </div>
+
+      <div class="friends">
+        <h2>Friends Online</h2>
+        <ul id="friend-list"></ul>
+      </div>
+    </aside>
   </main>
 
   <script src="script.js"></script>

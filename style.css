@@ -1,90 +1,148 @@
-body {
+/* Reset */
+* {
   margin: 0;
-  font-family: sans-serif;
-  color: #fff;
-  height: 100vh;
-  background-size: cover;
-  background-position: center;
-  display: flex;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.sidebar {
-  width: 200px;
-  background: rgba(0, 0, 0, 0.5);
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #121212;
+  color: #eee;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
-  position: absolute;
-  top: 20px;
-  left: 220px;
-  right: 20px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.logo {
-  height: 40px;
-}
-
-.settings-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #fff;
-  cursor: pointer;
+  background: #1f1f1f;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-bottom: 1px solid #333;
 }
 
 main {
+  flex: 1;
   display: flex;
-  flex: 1;
-  margin-left: 200px;
-  padding: 20px;
+  padding: 1.5rem 2rem;
+  gap: 1rem;
+  min-height: 0;
 }
 
-.launcher-panel {
-  flex: 1;
+.wallpaper {
+  flex: 3;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
   position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
 }
 
-.start-btn {
+.wallpaper::before {
+  content: '';
   position: absolute;
-  bottom: 40px;
-  right: 40px;
-  padding: 20px 40px;
-  font-size: 20px;
-  background: #ffba00;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 0;
+  border-radius: 12px;
+}
+
+.wallpaper-content {
+  position: relative;
+  z-index: 1;
+}
+
+.wallpaper-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.wallpaper-content p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 250px;
+  overflow-y: auto;
+}
+
+.games, .friends {
+  background: #1f1f1f;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+
+.games h2, .friends h2 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+}
+
+.game-btn {
+  width: 100%;
+  background: #282828;
   border: none;
+  color: #eee;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
 }
 
-.update-panel {
-  position: absolute;
-  bottom: 40px;
-  left: 40px;
-  width: 300px;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 8px;
+.game-btn:hover {
+  background: #444;
 }
 
-.friend-list {
-  width: 200px;
-  margin-left: 40px;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.friend-list h3 {
-  margin-top: 0;
-}
-
-.friend-list ul {
+#friend-list {
   list-style: none;
-  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
 }
 
-.friend-list li {
-  margin: 10px 0;
+.friend-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #333;
+  font-size: 0.95rem;
+}
+
+.friend-item:last-child {
+  border-bottom: none;
+}
+
+.friend-status.online {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.friend-status.offline {
+  color: #888;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  main {
+    flex-direction: column;
+  }
+  .sidebar {
+    min-width: auto;
+    max-height: 300px;
+  }
 }

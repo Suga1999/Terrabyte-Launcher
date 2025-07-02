@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: #fff;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+header {
+  position: absolute;
+  top: 20px;
+  left: 220px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 40px;
+}
+
+.settings-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  margin-left: 200px;
+  padding: 20px;
+}
+
+.launcher-panel {
+  flex: 1;
+  position: relative;
+}
+
+.start-btn {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  padding: 20px 40px;
+  font-size: 20px;
+  background: #ffba00;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.update-panel {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  width: 300px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+}
+
+.friend-list {
+  width: 200px;
+  margin-left: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.friend-list h3 {
+  margin-top: 0;
+}
+
+.friend-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.friend-list li {
+  margin: 10px 0;
+}

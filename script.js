@@ -1,58 +1,61 @@
-// Wallpapers array — you can replace these URLs with your own images
-const wallpapers = [
-  'assets/wallpapers/Nature%20wallpaper.jpg',
-  'assets/wallpapers/retro-space-arcade%20wallpaper.jpg',
-  'assets/wallpapers/Space%20wallpaper.jpg',
-];
-
-const wallpaperElement = document.querySelector('.wallpaper');
-const friendListElement = document.getElementById('friend-list');
-const gameButtons = document.querySelectorAll('.game-btn');
-
-function setWallpaper() {
-  const now = new Date();
-  const hours = now.getHours();
-  const index = Math.floor(hours / 4) % wallpapers.length;
-  wallpaperElement.style.backgroundImage = `url('${wallpapers[index]}')`;
-}
-
-setWallpaper();
-setInterval(setWallpaper, 3600 * 1000); // Update every hour
-
-// Mock friend list
+// Friend list data
 const friends = [
-  { name: 'Blnoob', online: true },
-  { name: 'OofTheMilkMan', online: false },
-  { name: 'Charlie', online: true },
-  { name: 'Diana', online: false },
+  { name: "Jolan", status: "online" },
+  { name: "Mykyta", status: "idle" },
+  { name: "Wessel", status: "offline" },
+  { name: "Max", status: "online" },
 ];
 
+// Game list data
+const games = [
+  { title: 'Retro Racer', img: 'assets/games/retro-racer.png' },
+  { title: 'Pixel Quest', img: 'assets/games/pixel-quest.png' },
+  { title: 'Dungeon Crawler', img: 'assets/games/dungeon-crawler.png' },
+  { title: 'Space Invaders', img: 'assets/games/space-invaders.png' },
+  { title: 'Mystery Mansion', img: 'assets/games/mystery-mansion.png' }
+];
+
+// Render friends in friend list
 function renderFriends() {
-  friendListElement.innerHTML = '';
+  const friendListEl = document.getElementById('friend-list');
+  friendListEl.innerHTML = '';
+
   friends.forEach(friend => {
     const li = document.createElement('li');
     li.className = 'friend-item';
     li.innerHTML = `
-      <span>${friend.name}</span>
-      <span class="friend-status ${friend.online ? 'online' : 'offline'}">
-        ${friend.online ? 'Online' : 'Offline'}
-      </span>
+      <span class="friend-status-dot ${friend.status}"></span>
+      <span class="friend-name">${friend.name}</span>
     `;
-    friendListElement.appendChild(li);
+    friendListEl.appendChild(li);
   });
 }
 
-renderFriends();
+// Render games in left sidebar
+function renderGames() {
+  const gameListEl = document.getElementById('game-list');
+  gameListEl.innerHTML = '';
 
-gameButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    alert(`Launching ${button.dataset.game}...`);
-
-    const startBtn = document.querySelector('.start-btn');
-startBtn.addEventListener('click', () => {
-  alert('Starting the featured game...');
-  // TODO: Replace with actual launch code
-});
-
+  games.forEach(game => {
+    const li = document.createElement('li');
+    li.className = 'game-tile';
+    li.innerHTML = `
+      <img src="${game.img}" alt="${game.title} Thumbnail" />
+      <span class="game-title">${game.title}</span>
+      <button class="play-btn" title="Start ${game.title}">Play</button>
+    `;
+    gameListEl.appendChild(li);
   });
+}
+
+// Initialize rendering
+renderFriends();
+renderGames();
+
+// Collapsible friend list toggle
+const sidebar = document.getElementById('sidebar');
+const friendsHeader = document.getElementById('friends-header');
+
+friendsHeader.addEventListener('click', () => {
+  sidebar.classList.toggle('collapsed');
 });

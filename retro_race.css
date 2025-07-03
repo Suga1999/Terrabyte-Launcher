@@ -9,13 +9,34 @@ html, body {
   height: 100%;
   overflow: hidden;
   font-family: Arial, sans-serif;
-  background: url('assets/wallpapers/Nature wallpaper.jpg') no-repeat center center fixed;
+  background: url('assets/wallpapers/retro_racer_wallpaper.jpg') no-repeat center center fixed;
   background-size: cover;
   image-rendering: crisp-edges;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
 }
+
+/* Neon title */
+.neon-title {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  font-weight: 700;
+  color: #001eff;  /* Your retro blue */
+  text-shadow:
+    0 0 5px #fe0000,
+    0 0 10px #fdfe02,
+    0 0 20px #0bff01,
+    0 0 40px 	#011efe,
+    0 0 60px #fe00f6;
+  z-index: 9999;
+  font-family: 'Retro', sans-serif; /* optional, for a retro font */
+}
+
+
 
 /* Top bar */
 .top-bar {

@@ -1,18 +1,19 @@
+
 // Friend list data
 const friends = [
-  { name: "Jolan", status: "online" },
-  { name: "Mykyta", status: "idle" },
-  { name: "Wessel", status: "offline" },
-  { name: "Max", status: "online" },
+  { name: "OofTheMilkMan", status: "online" },
+  { name: "Blnoob", status: "idle" },
+  { name: "Potato", status: "offline" },
+  { name: "Choki", status: "online" },
 ];
 
 // Game list data
 const games = [
-  { title: 'Retro Racer', img: 'assets/games/retro-racer.png' },
-  { title: 'Pixel Quest', img: 'assets/games/pixel-quest.png' },
-  { title: 'Dungeon Crawler', img: 'assets/games/dungeon-crawler.png' },
-  { title: 'Space Invaders', img: 'assets/games/space-invaders.png' },
-  { title: 'Mystery Mansion', img: 'assets/games/mystery-mansion.png' }
+  { title: 'Retro Racer', img: 'assets/game-icons/retro_racer.jpg' },
+  { title: 'Pixel Quest', img: 'assets/game-icons/pixel_quest.jpg' },
+  { title: 'Dungeon Crawler', img:'assets/game-icons/dungeon_crawler.jpg' },
+  { title: 'Space Invaders', img: 'assets/game-icons/space_invaders.jpg' },
+  { title: 'Mystery Mansion', img: 'assets/game-icons/mystery_mansion.jpg' }
 ];
 
 // Render friends in friend list

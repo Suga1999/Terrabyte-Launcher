@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Play, Download, Info, Clock } from 'lucide-react';
+import { Play, Download, Info, Clock, Star } from 'lucide-react';
 import { Game } from '../types';
 
 interface GameCardProps {
@@ -10,14 +10,14 @@ interface GameCardProps {
 }
 
 export function GameCard({ game, onPlay, onInstall, featured = false }: GameCardProps) {
-  if (featured) {
-    return (
-      <motion.div
-        className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer"
-        whileHover={{ scale: 1.02 }}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
+  return (
+    <motion.div
+      className="relative bg-dark-700/30 backdrop-blur-sm rounded-2xl overflow-hidden group cursor-pointer border border-white/5 hover:border-white/20 transition-all duration-300"
+      whileHover={{ scale: 1.02, y: -5 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      <div className="aspect-[4/5] relative">
         <img
           src={game.image}
           alt={game.title}
@@ -25,63 +25,14 @@ export function GameCard({ game, onPlay, onInstall, featured = false }: GameCard
         />
         
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-        
-        {/* Content */}
-        <div className="absolute bottom-0 left-0 right-0 p-8">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-          >
-            <div className="pixel-font text-retro-yellow text-sm mb-2">FEATURED</div>
-            <h2 className="text-4xl font-bold mb-3">{game.title}</h2>
-            <p className="text-gray-300 mb-6 max-w-md">{game.description}</p>
-            
-            <div className="flex items-center space-x-4">
-              <motion.button
-                onClick={() => game.installed ? onPlay(game) : onInstall(game)}
-                className="bg-gradient-to-r from-retro-purple to-retro-pink px-8 py-3 rounded-full font-semibold flex items-center space-x-2 hover:shadow-lg hover:shadow-retro-purple/25 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {game.installed ? <Play className="w-5 h-5" /> : <Download className="w-5 h-5" />}
-                <span>{game.installed ? 'PLAY NOW' : 'INSTALL'}</span>
-              </motion.button>
-              
-              {game.installed && game.lastPlayed && (
-                <div className="flex items-center space-x-2 text-sm text-gray-400">
-                  <Clock className="w-4 h-4" />
-                  <span>Last played {game.lastPlayed}</span>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        </div>
-      </motion.div>
-    );
-  }
-
-  return (
-    <motion.div
-      className="relative bg-dark-700/50 rounded-xl overflow-hidden group cursor-pointer glass"
-      whileHover={{ scale: 1.03, y: -5 }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-    >
-      <div className="aspect-[3/4] relative">
-        <img
-          src={game.image}
-          alt={game.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
         
         {/* Status Badge */}
-        <div className="absolute top-3 left-3">
-          <div className={`pixel-font text-xs px-2 py-1 rounded ${
+        <div className="absolute top-4 left-4">
+          <div className={`pixel-font text-xs px-3 py-1.5 rounded-full backdrop-blur-sm border ${
             game.installed 
-              ? 'bg-retro-green/20 text-retro-green border border-retro-green/30' 
-              : 'bg-retro-yellow/20 text-retro-yellow border border-retro-yellow/30'
+              ? 'bg-retro-green/20 text-retro-green border-retro-green/30' 
+              : 'bg-retro-yellow/20 text-retro-yellow border-retro-yellow/30'
           }`}>
             {game.installed ? 'INSTALLED' : 'NOT INSTALLED'}
           </div>
@@ -94,34 +45,41 @@ export function GameCard({ game, onPlay, onInstall, featured = false }: GameCard
         >
           <div className="flex space-x-3">
             <motion.button
-              onClick={() => game.installed ? onPlay(game) : onInstall(game)}
-              className="bg-retro-purple hover:bg-retro-purple/80 p-3 rounded-full transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                game.installed ? onPlay(game) : onInstall(game);
+              }}
+              className="bg-gradient-to-r from-retro-purple to-retro-pink hover:from-retro-purple/80 hover:to-retro-pink/80 p-4 rounded-full transition-all duration-300 shadow-lg"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              {game.installed ? <Play className="w-5 h-5" /> : <Download className="w-5 h-5" />}
+              {game.installed ? <Play className="w-6 h-6" /> : <Download className="w-6 h-6" />}
             </motion.button>
             
             <motion.button
-              className="bg-dark-600 hover:bg-dark-500 p-3 rounded-full transition-colors"
+              className="bg-dark-600/80 backdrop-blur-sm hover:bg-dark-500/80 p-4 rounded-full transition-all duration-300 border border-white/20"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <Info className="w-5 h-5" />
+              <Info className="w-6 h-6" />
             </motion.button>
           </div>
         </motion.div>
-      </div>
 
-      {/* Game Info */}
-      <div className="p-4">
-        <h3 className="font-semibold text-lg mb-1">{game.title}</h3>
-        <p className="text-sm text-gray-400 mb-2">{game.genre}</p>
-        <div className="flex items-center justify-between text-xs text-gray-500">
-          <span>{game.size}</span>
-          {game.installed && game.lastPlayed && (
-            <span>Played {game.lastPlayed}</span>
-          )}
+        {/* Bottom Content */}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <h3 className="font-bold text-lg mb-1 text-white">{game.title}</h3>
+          <p className="text-sm text-gray-300 mb-2">{game.genre}</p>
+          
+          <div className="flex items-center justify-between text-xs">
+            <span className="text-gray-400 pixel-font">{game.size}</span>
+            {game.installed && game.lastPlayed && (
+              <div className="flex items-center space-x-1 text-gray-400">
+                <Clock className="w-3 h-3" />
+                <span className="pixel-font">{game.lastPlayed}</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </motion.div>

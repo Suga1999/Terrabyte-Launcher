@@ -1,52 +1,13 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Terrabyte Launcher</title>
-<link rel="stylesheet" href="style.css" />
-</head>
-<body>
-
-  <!-- Top bar -->
-  <div class="top-bar">
-    <button class="icon-btn" title="Settings">⚙</button>
-    <button class="icon-btn" title="Social">👥</button>
-    <button class="icon-btn" title="Close">✖</button>
-  </div>
-
-  <!-- Featured game update -->
-  <section class="featured-update">
-    <div class="update-info">
-      <h2>Featured Game Update</h2>
-      <p>New retro-themed level added! Try it out now.</p>
-    </div>
-    <button class="start-btn">Start Game</button>
-    <div class="patch-notes">
-      <h3>Patch Notes</h3>
-      <ul>
-        <li>🎮 Added Gamepad Support</li>
-        <li>🎨 New Pixel Filter</li>
-        <li>🐞 Minor Bug Fixes</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Left sidebar with games -->
-  <aside class="left-sidebar" id="left-sidebar">
-    <h2>Games</h2>
-    <ul id="game-list"></ul>
-  </aside>
-
-  <!-- Right sidebar with friend list -->
-  <aside class="sidebar" id="sidebar">
-    <div class="friends" id="friends-header" style="cursor:pointer;">
-      <h2>Friends Online <span id="toggle-arrow">▼</span></h2>
-      <ul id="friend-list"></ul>
-    </div>
-  </aside>
-
-  <script src="script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terrabyte Launcher</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

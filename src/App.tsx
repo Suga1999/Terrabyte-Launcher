@@ -1,112 +1,80 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { Header } from './components/Header';
 import { FriendsList } from './components/FriendsList';
 import { HomeView } from './components/HomeView';
 import { LibraryView } from './components/LibraryView';
-import { games } from './data/games';
-import { friends } from './data/friends';
-import { Game, User } from './types';
-
-const mockUser: User = {
-  id: '1',
-  username: 'RetroGamer',
-  avatar: 'https://images.pexels.com/photos/1040880/pexels-photo-1040880.jpeg?auto=compress&cs=tinysrgb&w=40&h=40&dpr=1',
-  level: 42,
-  gamesOwned: games.length
-};
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [friendsOpen, setFriendsOpen] = useState(false);
 
-  const handlePlayGame = (game: Game) => {
-    console.log('Playing game:', game.title);
-    // Here you would implement game launching logic
-  };
-
-  const handleInstallGame = (game: Game) => {
-    console.log('Installing game:', game.title);
-    // Here you would implement game installation logic
-  };
-
   const renderContent = () => {
     switch (activeTab) {
       case 'home':
-        return (
-          <HomeView
-            games={games}
-            onPlayGame={handlePlayGame}
-            onInstallGame={handleInstallGame}
-          />
-        );
+        return <HomeView />;
       case 'library':
-        return (
-          <LibraryView
-            games={games}
-            onPlayGame={handlePlayGame}
-            onInstallGame={handleInstallGame}
-          />
-        );
+        return <LibraryView />;
       case 'downloads':
         return (
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-bold mb-4">Downloads</h2>
-            <p className="text-gray-400">No active downloads</p>
+          <div className="p-8">
+            <h1 className="text-3xl font-bold gradient-text mb-6">Downloads</h1>
+            <div className="glass rounded-2xl p-8 text-center">
+              <p className="text-gray-400">No active downloads</p>
+            </div>
           </div>
         );
       case 'settings':
         return (
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-bold mb-4">Settings</h2>
-            <p className="text-gray-400">Settings panel coming soon</p>
+          <div className="p-8">
+            <h1 className="text-3xl font-bold gradient-text mb-6">Settings</h1>
+            <div className="glass rounded-2xl p-8">
+              <p className="text-gray-400">Settings panel coming soon...</p>
+            </div>
           </div>
         );
       case 'profile':
         return (
-          <div className="text-center py-20">
-            <h2 className="text-2xl font-bold mb-4">Profile</h2>
-            <p className="text-gray-400">Profile management coming soon</p>
+          <div className="p-8">
+            <h1 className="text-3xl font-bold gradient-text mb-6">Profile</h1>
+            <div className="glass rounded-2xl p-8">
+              <p className="text-gray-400">Profile management coming soon...</p>
+            </div>
           </div>
         );
       default:
-        return null;
+        return <HomeView />;
     }
   };
 
   return (
-    <div className="h-screen w-screen bg-animated overflow-hidden">
-      {/* Background Effects */}
-      <div className="fixed inset-0 bg-gradient-to-br from-retro-purple/5 via-transparent to-retro-pink/5 pointer-events-none" />
-      
+    <div className="min-h-screen bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white overflow-hidden">
+      {/* Background Pattern */}
+      <div className="fixed inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
+      </div>
+
       {/* Sidebar */}
       <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-      
+
       {/* Header */}
-      <Header
-        user={mockUser}
-        onToggleFriends={() => setFriendsOpen(!friendsOpen)}
+      <Header 
+        onToggleFriends={() => setFriendsOpen(!friendsOpen)} 
         friendsOpen={friendsOpen}
       />
-      
+
       {/* Main Content */}
-      <motion.main
-        className="ml-20 mt-20 p-8 h-[calc(100vh-5rem)] overflow-y-auto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-      >
+      <main className="ml-20 mt-16 min-h-[calc(100vh-4rem)] overflow-y-auto">
         {renderContent()}
-      </motion.main>
-      
+      </main>
+
       {/* Friends List */}
-      <FriendsList
-        friends={friends}
-        isOpen={friendsOpen}
-        onClose={() => setFriendsOpen(false)}
+      <FriendsList 
+        isOpen={friendsOpen} 
+        onClose={() => setFriendsOpen(false)} 
       />
     </div>
+  )
   );
 }
 

@@ -74,7 +74,6 @@ function App() {
         onClose={() => setFriendsOpen(false)} 
       />
     </div>
-  )
   );
 }
 
